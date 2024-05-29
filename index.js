@@ -1,43 +1,42 @@
-const employee = [
-    {
-      personalInfo: {
-        firstName: 'John',
-        lastName: 'Doe',
-        age: 30,
+const employee = {
+  0: {
+    info: {
+      0: { name: "John" },
+      1: { surname: "Doe" },
+      2: { years: 30 },
+      3: {
         address: {
-          city: 'Anytown',
-          state: 'NY',
-          postalCode: '12345',
+          0: { city: "Anytown" },
+          1: { state: "NY" },
+          2: { postalCode: "12345" },
         },
       },
     },
-    {
-      employmentDetails: {
-        position: 'Software Engineer',
-        department: 'Engineering',
-        startDate: '2022-01-01',
-        endDate: null,
+  },
+  1: {
+    details: {
+      0: { position: "Software Engineer" },
+      1: { department: "Engineering" },
+      2: { startDate: "2022-01-01" },
+      3: { endDate: null },
+      4: {
         manager: {
-          firstName: 'Alice',
-          lastName: 'Smith',
-          email: 'alice@example.com',
+          0: { firstName: "Alice" },
+          1: { lastName: "Smith" },
+          2: { email: "alice@example.com" },
         },
       },
     },
-  ];
+  },
+};
 
-  console.log(employee.hasOwnProperty("firstName"))
-
-// Check key exsist in object
 function getEmployeeInfo(obj, key) {
   if (obj.hasOwnProperty(key)) {
     return obj[key];
   }
-// If not we iterate all keys in object
 
   for (let k in obj) {
-    if (typeof obj[k] === 'object' && obj[k] !== null) {
-        console.log(obj[k])
+    if (typeof obj[k] === "object" && obj[k] !== null) {
       let result = getEmployeeInfo(obj[k], key);
       if (result !== "Klucz nie istnieje") {
         return result;
@@ -52,4 +51,3 @@ console.log(getEmployeeInfo(employee, "firstName")); // Powinno zwrócić: "John
 console.log(getEmployeeInfo(employee, "lastName")); // Powinno zwrócić: "Doe"
 console.log(getEmployeeInfo(employee, "position")); // Powinno zwrócić: "Software Engineer"
 console.log(getEmployeeInfo(employee, "street")); // Powinno zwrócić: "Klucz nie istnieje"
- 
